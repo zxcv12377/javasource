@@ -20,6 +20,7 @@ public class CastingEx1 {
 
         double d2 = f1;
         double result2 = d1 + f1;
+        System.out.println(d2);
         System.out.println(result2);
 
         int num = 97;
