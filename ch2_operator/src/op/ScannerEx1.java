@@ -11,5 +11,6 @@ public class ScannerEx1 {
         System.out.println("입력값 : " + num);
 
         sc.close();
+
     }
 }

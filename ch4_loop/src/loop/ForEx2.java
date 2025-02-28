@@ -13,42 +13,46 @@ public class ForEx2 {
         }
         System.out.println();
         for (int i = 1; i < 11; i++) {
-            if(i % 2 == 0){
+            if (i % 2 == 0) {
                 System.out.println(i + "   ");
             }
         }
         System.out.println();
-        for (int i = 1; i < 11; i+=2) {
+        for (int i = 1; i < 11; i += 2) {
             System.out.println(i + "   ");
         }
+
+        // for (int i = 0, j = 0; i < 5 || j > 5; i++) {
+
+        // }
     }
 }
 // Scanner scanner = new Scanner(System.in);
-//         System.out.printf("정수 입력 : ");
-//         String str = scanner.nextLine();
-//         int n = Integer.parseInt(str);
+// System.out.printf("정수 입력 : ");
+// String str = scanner.nextLine();
+// int n = Integer.parseInt(str);
 
-//         for (int i = 1; i < n * 2; i += 2) { // 별그리기 피라미드
-//             for (int j = n * 2 - 1; j > i; j -= 2) {
-//                 System.out.printf(" ");
-//             }
-//             for (int j = 0; j < i; j++) {
-//                 System.out.printf("0");
-//             }
-//             System.out.println("");
-//         }
-//         System.out.println("");
-//         System.out.println("");
-//         for (int i = 1; i < n * 2; i += 2) { // 별그리기 역피라미드
-//             for (int j = 1; j < i; j += 2) {
-//                 System.out.printf(" ");
-//             }
-//             for (int j = n * 2; j > i; j--) {
-//                 System.out.printf("0");
-//             }
-//             System.out.println("");
-//         }
-//         scanner.close();
+// for (int i = 1; i < n * 2; i += 2) { // 별그리기 피라미드
+// for (int j = n * 2 - 1; j > i; j -= 2) {
+// System.out.printf(" ");
+// }
+// for (int j = 0; j < i; j++) {
+// System.out.printf("0");
+// }
+// System.out.println("");
+// }
+// System.out.println("");
+// System.out.println("");
+// for (int i = 1; i < n * 2; i += 2) { // 별그리기 역피라미드
+// for (int j = 1; j < i; j += 2) {
+// System.out.printf(" ");
+// }
+// for (int j = n * 2; j > i; j--) {
+// System.out.printf("0");
+// }
+// System.out.println("");
+// }
+// scanner.close();
 
 // j = 9 = 1 0
 // 5 000
