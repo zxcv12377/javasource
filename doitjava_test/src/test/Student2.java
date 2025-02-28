@@ -20,14 +20,12 @@ public class Student2 {
         studentName = name;
     }
 
-    public static int getSerialNum(){
-        int i = 10;
+    public static int getSerialNum() {
+        // int i = 10;
         return serialNum;
     }
-    
-    public static void setSerialNum(int serialNum){
+
+    public static void setSerialNum(int serialNum) {
         Student2.serialNum = serialNum;
     }
 }
-
-
