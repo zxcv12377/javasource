@@ -1,7 +1,7 @@
 package test;
 
 public class Student1 {
-    public static int serialNum = 1000;
+    public int serialNum = 1000;
     public int studentID;
     public String studentName;
     public int grade;

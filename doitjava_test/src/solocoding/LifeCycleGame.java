@@ -3,53 +3,54 @@ package solocoding;
 import java.util.Scanner;
 
 public class LifeCycleGame {
-    public static int[][] place;
-
-    public LifeCycleGame() {
-
-    }
+    private static int[][] place;
+    private static boolean[][] changed;
+    private static int size = 0;
 
     // LifeCycleGame
     // 5x5 판 / 1은 다음 차례때 2가됨 / 2는 다음 차례 때 3이됨 / 3은 다음 차례때 사라짐
     // 1의 상하좌우는 다음 차례 때 1이 됨
-
+    // key-value 사용할지 int배열과 boolean배열을 사용할지 선택
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int size = sc.nextInt();
+        size = sc.nextInt() + 1;
         place = new int[size][size];
-        placeViewer();
-        // #region RANDOM NUMBER PRODUCT
-        for (int i = 0; i < place.length; i++) {
-            for (int j = 0; j < place.length; j++) {
-                place[i][j] = (int) (Math.random() * 2);
-                System.out.print(place[i][j]);
+        changed = new boolean[size][size];
+        // #region INITIALIZE
+        for (int i = 1; i < place.length - 1; i++) {
+            for (int j = 1; j < place.length - 1; j++) {
+                int rand = (int) (Math.random() * 2);
+                changed[i][j] = false;
+                place[i][j] = rand;
             }
-            System.out.println();
         }
+        placeViewer();
         // #endregion
 
-        int[][] copy = place.clone();
-
-        for (int i = 0; i < place.length; i++) {
-            for (int j = 0; j < place.length; j++) {
-
-            }
-        }
         System.out.println();
-        for (int i = 0; i < copy.length; i++) {
-            for (int j = 0; j < copy.length; j++) {
-                System.out.print(copy[i][j]);
+        for (int i = 1; i < place.length - 1; i++) {
+            for (int j = 1; j < place.length - 1; j++) {
+                if (place[i][j] == 0) {// ArrayIndexOutOfBoundsException
+                    if ((place[i][j + 1] == 1 || place[i][j - 1] == 1 || place[i + 1][j] == 1 || place[i - 1][j] == 1)
+                            && changed[i][j] == false) {
+                        place[i][j] = 1;
+                        changed[i][j] = true;
+                    }
+                } else if (place[i][j] == 1 || changed[i][j] == false) {
+                    place[i][j] = 2;
+                } else if (place[i][j] == 2) {
+                    place[i][j] = 3;
+                }
             }
-            System.out.println();
         }
-
+        placeViewer();
         sc.close();
     }
 
     public static void placeViewer() {
         for (int i = 0; i < place.length; i++) {
-            for (int j = 0; j < place.length; j++) {
+            for (int j = 0; j < place[i].length; j++) {
                 System.out.print(place[i][j]);
             }
             System.out.println();

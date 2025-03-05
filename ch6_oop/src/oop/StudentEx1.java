@@ -9,5 +9,7 @@ public class StudentEx1 {
         System.out.println(student1);
         System.out.println(student2);
         System.out.println(student3);
+        student3.changeTel("010-9876-5432");
+        System.out.println(student3);
     }
 }

@@ -32,26 +32,21 @@ public class Student {
     }
 
     // 기능 : 전화번호 변경, 이메일 변경, 학년 변경, 반 변경
-    public String setPhone(String phoneNumber) {
-        phone = phoneNumber;
-        return phone;
 
+    public void changeTel(String phone) {
+        this.phone = phone;
     }
 
-    public String setEmail(String emails) {
-        email = emails;
-        return email;
-
+    public void changeEmail(String email) {
+        this.email = email;
     }
 
-    public void gradeUp() {
-        grade++;
+    public void changeGrade(int grade) {
+        this.grade = grade;
     }
 
-    public int setClassNum(int num) {
-        classNum = num;
-        return classNum;
-
+    public void chagneClassNum(int classNum) {
+        this.classNum = classNum;
     }
 
     @Override
