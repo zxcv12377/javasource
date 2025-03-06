@@ -5,10 +5,10 @@ public class AccountEx1 {
         Account account = new Account("110-10-0100", "이름", 1000000);
 
         account.deposit(1000);
-        System.out.println(account.balance);
+        System.out.println(account.getBalance());
         System.out.println();
 
-        account.withdraw(50000);
-        System.out.println(account.balance);
+        account.withdraw(50000000);
+        System.out.println(account.getBalance());
     }
 }

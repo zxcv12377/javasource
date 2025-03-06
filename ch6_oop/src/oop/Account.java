@@ -1,9 +1,9 @@
 package oop;
 
 public class Account {
-    String ano;
-    String owner;
-    long balance;
+    private String ano;
+    private String owner;
+    private long balance;
 
     public Account() {
 
@@ -15,11 +15,25 @@ public class Account {
         this.balance = balance;
     }
 
-    void deposit(long balance) {
+    public String getAno() {
+        return ano;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void deposit(long balance) {
         this.balance += balance;
     }
 
-    void withdraw(long balance) {
+    public void withdraw(long balance) {
+        if (balance > this.balance)
+            return;
         this.balance -= balance;
     }
 
