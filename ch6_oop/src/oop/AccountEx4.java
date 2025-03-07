@@ -2,7 +2,7 @@ package oop;
 
 import java.util.Scanner;
 
-public class AccountEx3 {
+public class AccountEx4 {
 
     private static Account[] account = new Account[100];
     private static Scanner sc = new Scanner(System.in);
@@ -79,11 +79,10 @@ public class AccountEx3 {
 
         System.out.print("계좌 번호 입력 >> ");
         String accountNum = sc.nextLine();
-        Account findAcc = findAccount(accountNum);
 
         System.out.print("입금할 금액을 입력 >> ");
         long balance = Integer.parseInt(sc.nextLine());
-
+        Account findAcc = findAccount(accountNum);
         if (findAcc != null) {
             findAcc.deposit(balance);
         } else {
@@ -94,11 +93,10 @@ public class AccountEx3 {
     private static void withdraw() {
         System.out.print("계좌 번호 입력 >> ");
         String accountNum = sc.nextLine();
-        Account findAcc = findAccount(accountNum);
 
         System.out.print("출금할 금액을 입력 >> ");
         long balance = Integer.parseInt(sc.nextLine());
-
+        Account findAcc = findAccount(accountNum);
         if (findAcc != null) {
             findAcc.withdraw(balance);
         } else {
@@ -129,16 +127,12 @@ public class AccountEx3 {
         // }
         // return null;
 
-        Account acc = null;
         for (int i = 0; i < account.length; i++) {
-            if (account[i] != null) {
-                if (account[i].getAno().equals(ano)) {
-                    acc = account[i];
-                    break;
-                }
-                System.out.println("찾는 계좌는 없음");
-            }
+            if (ano.equals(account[i].getAno()))
+                return account[i];
+            if (account[i].getAno() == null)
+                break;
         }
-        return acc;
+        return null;
     }
 }
