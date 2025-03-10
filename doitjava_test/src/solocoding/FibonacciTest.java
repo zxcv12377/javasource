@@ -5,8 +5,6 @@ public class FibonacciTest {
         Long[] arr = new Long[a + 1];
         arr[0] = 0L;
         arr[1] = 1L;
-        // arr[2] = 1
-        // arr[3] =
         for (int i = 2; i <= a; i++) {
             arr[i] = arr[i - 1] + arr[i - 2];
         }
