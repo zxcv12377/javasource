@@ -11,8 +11,10 @@ public class ScopeEx1 {
         // System.out.println("x = " + x);
         System.out.println("a = " + a);
 
-        if(a < 200){
+        if (a < 200) {
             int sum = 0;
+            System.out.println(sum);
         }
+
     }
 }
