@@ -1,21 +1,28 @@
 package extend;
 
 public class CheckingTrafficAccount extends CheckingAccount {
-    private boolean hsTrafficCard;
 
-    public CheckingTrafficAccount(String ano, String owner, long balance, String cardNo, boolean hsTrafficCard) {
+    private boolean hasTrafficCard;
+
+    public CheckingTrafficAccount(String ano, String owner, long balance, String cardNo, boolean hasTrafficCard) {
         super(ano, owner, balance, cardNo);
-        this.hsTrafficCard = hsTrafficCard;
+        this.hasTrafficCard = hasTrafficCard;
     }
 
-    public boolean isHsTrafficCard() {
-        return hsTrafficCard;
+    public boolean isHasTrafficCard() {
+        return hasTrafficCard;
     }
 
-    public long trafficPay(String cardNo, int amount) throws Exception {
-        if (!isHsTrafficCard()) {
-            throw new Exception("교통카드 기능이 없슴");
+    // 교통비 지불
+    long payTrafficCard(String cardNo, int amount) throws Exception {
+        // 교통가능이 있다면 교통비 지불한다.
+        if (!hasTrafficCard) {
+            throw new Exception("교통카드 기능이 없습니다.");
         }
+        // 카드번호, 잔액 확인 후 지불한다.
+        // long balance = pay(cardNo, amount);
+        // return balance;
         return pay(cardNo, amount);
     }
+
 }

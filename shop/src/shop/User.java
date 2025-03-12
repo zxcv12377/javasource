@@ -1,8 +1,8 @@
 package shop;
 
 public class User {
-    private String name;
-    private PayType payType;
+    private String name; // 고객명
+    private PayType payType; // 결제방식
 
     public User(String name, PayType payType) {
         this.name = name;

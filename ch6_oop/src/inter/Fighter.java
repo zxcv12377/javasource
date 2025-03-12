@@ -15,7 +15,8 @@ public class Fighter extends Unit implements Fightable {
 
     @Override
     public void attack(Unit unit) {
-
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attack'");
     }
 
 }

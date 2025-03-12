@@ -8,6 +8,7 @@ public class Animal {
 
 class Canine extends Animal {
     Canine() {
+        // super();
         System.out.println("Canine 생성자");
     }
 }

@@ -8,19 +8,20 @@ public class AccountEx2 {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        // 인스턴스 생성
         // AccountEx2 obj = new AccountEx2();
         boolean run = true;
         while (run) {
-            System.out.println("------------------------------------------------------------");
-            System.out.println("1.계좌생성 | 2. 계좌목록 | 3. 예금 | 4. 출금 | 5. 종료");
-            System.out.println("------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------");
+            System.out.println("1.계좌생성 | 2.계좌목록 | 3.예금 | 4.출금 | 5.종료");
+            System.out.println("--------------------------------------------------------");
 
-            System.out.print("선택 >> ");
+            System.out.print("선택 >>  ");
             int menu = Integer.parseInt(sc.nextLine());
             switch (menu) {
                 case 1:
                     account = createAccount();
-
                     break;
                 case 2:
                     accountList(account);
@@ -34,60 +35,68 @@ public class AccountEx2 {
                 case 5:
                     run = false;
                     break;
-
                 default:
-                    System.out.println("잘못된 번호 입력");
+                    System.out.println("번호 확인");
                     break;
             }
         }
-        sc.close();
+
     }
 
     private static Account createAccount() {
-        System.out.print("계좌 번호 입력 >> ");
-        String accountNum = sc.nextLine();
-        System.out.print("이름 입력 >> ");
-        String ownerName = sc.nextLine();
-        System.out.print("잔액 입력 >> ");
-        long balance = Integer.parseInt(sc.nextLine());
-        return new Account(accountNum, ownerName, balance);
+        // new Account("110-11", "홍길동", 1000000);
+        // 계좌번호
+        System.out.print("계좌번호 : ");
+        String ano = sc.nextLine();
+        // 계좌주
+        System.out.print("계좌주 : ");
+        String owner = sc.nextLine();
+        // 잔액
+        System.out.print("금액 : ");
+        int balance = Integer.parseInt(sc.nextLine());
+
+        return new Account(ano, owner, balance);
     }
 
     private static void accountList(Account account) {
-        System.out.println("---------------------------");
+        System.out.println("-----------------------------");
         System.out.println("계좌 목록");
-        System.out.println("---------------------------");
-        System.out.printf("%s\t%s\t%d\n", account.getAno(), account.getOwner(), account.getBalance());
+        System.out.println("-----------------------------");
 
+        System.out.printf("%s\t%s\t%d\n", account.getAno(), account.getOwner(), account.getBalance());
     }
 
     private static void deposit(Account account) {
-        System.out.print("계좌 번호 입력 >> ");
-        String accountNum = sc.nextLine();
-        if (!(account.getAno().equals(accountNum))) {
-            System.out.println("계좌 번호가 틀립니다.");
+        // 예금하다
+        // 계좌번호 입력받기 => 사용자가 입력한 계좌번호와 account 의 계좌번호 일치 여부 확인
+        System.out.print("계좌번호 : ");
+        String ano = sc.nextLine();
+
+        if (!ano.equals(account.getAno()))
             return;
-        }
 
-        System.out.print("입금할 금액을 입력 >> ");
-        long balance = Integer.parseInt(sc.nextLine());
+        // 예금액 입력받기 => 잔액 = 잔액 + 예금액
+        System.out.print("예금액 : ");
+        int balance = Integer.parseInt(sc.nextLine());
+
+        // account.balance = account.getBalance() + balance;
         account.deposit(balance);
-        System.out.println("현재 잔액 >>" + account.getBalance());
-
     }
 
     private static void withdraw(Account account) {
-        System.out.print("계좌 번호 입력 >> ");
-        String accountNum = sc.nextLine();
-        if (!(account.getAno().equals(accountNum))) {
-            System.out.println("계좌 번호가 틀립니다.");
+        System.out.print("계좌번호 : ");
+        String ano = sc.nextLine();
+
+        if (!ano.equals(account.getAno()))
             return;
-        }
-        System.out.print("출금할 금액을 입력 >> ");
-        long balance = Integer.parseInt(sc.nextLine());
+
+        // 출금액 입력받기 => 잔액 = 잔액 - 출금액
+        System.out.print("출금액 : ");
+        int balance = Integer.parseInt(sc.nextLine());
+
         account.withdraw(balance);
-        System.out.println("현재 잔액 >>" + account.getBalance());
     }
 
-    // private static Account findAccount(){}
+    // private static Account findAccount() {
+    // }
 }

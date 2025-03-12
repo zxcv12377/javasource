@@ -1,6 +1,7 @@
 package abstractclass;
 
 public abstract class Player {
+
     boolean pause;
     int currentPos;
 
@@ -9,6 +10,7 @@ public abstract class Player {
         currentPos = 0;
     }
 
+    // 추상메서드
     abstract void play();
 
     void pause() {
@@ -18,11 +20,14 @@ public abstract class Player {
 
 class CDPlayer extends Player {
 
+    // CDPlayer(){
+    // super();
+    // }
+
     @Override
     void play() {
         System.out.println("CD플레이어");
     }
-
 }
 
 class AudioPlayer extends Player {
@@ -31,5 +36,4 @@ class AudioPlayer extends Player {
     void play() {
         System.out.println("Audio플레이어");
     }
-
 }

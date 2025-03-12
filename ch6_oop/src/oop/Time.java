@@ -1,6 +1,7 @@
 package oop;
 
 public class Time {
+    // 속성 : 시,분,초
     private int hour;
     private int minute;
     private float second;
@@ -10,7 +11,9 @@ public class Time {
     }
 
     public void setHour(int hour) {
-        if (hour > 23 || hour < 0)
+        // 입력값 hour 가 1~23 사이에 있다면 변경
+        // 없다면 그냥 리턴
+        if (hour < 0 || hour > 23)
             return;
         this.hour = hour;
     }
@@ -20,7 +23,7 @@ public class Time {
     }
 
     public void setMinute(int minute) {
-        if (minute > 59 || minute < 0)
+        if (minute < 0 || minute > 59)
             return;
         this.minute = minute;
     }
@@ -30,7 +33,7 @@ public class Time {
     }
 
     public void setSecond(float second) {
-        if (second >= 60f || second < 0.0f)
+        if (second < 0.0f || second > 59.99f)
             return;
         this.second = second;
     }

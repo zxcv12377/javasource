@@ -5,7 +5,7 @@ public class Employee {
     private String position;
 
     public void work() {
-        System.out.println(name + " " + position + " 이(가) 일한다.");
+        System.out.println(name + " " + position + " 이(가) 일한다");
     }
 
     public String getName() {
@@ -23,4 +23,5 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
+
 }

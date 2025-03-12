@@ -1,9 +1,6 @@
 package oop;
 
-// private : 외부 클래스에서 접근 불가 : 멤버변수
-
-// protect : 
-// public : private의 반대(접근 제한이 없음) 개념 : 생성자, 메서드
+// private : 외부 클래스에서 접근 불가
 
 public class Tv2 {
     private int size;
@@ -12,9 +9,8 @@ public class Tv2 {
     private int volume;
     private boolean power;
 
-    // 초기화 - 생성자 제공
+    // 초기화 - 생성자
     public Tv2() {
-
     }
 
     public Tv2(int size, String color) {
@@ -22,20 +18,21 @@ public class Tv2 {
         this.color = color;
     }
 
-    public void power() {
-        power = !power;
-    }
-
-    public void changeChannel(int channel) {
+    void changeChannel(int channel) {
         this.channel = channel;
     }
 
-    public void channelUp() {
+    // 채널 변경, 볼륨 변경, 전원 켜기, 끄기
+    void channelUp() {
         channel++;
     }
 
-    public void channelDown() {
+    void channelDown() {
         channel--;
+    }
+
+    void power() {
+        power = !power;
     }
 
     @Override
@@ -43,4 +40,5 @@ public class Tv2 {
         return "Tv [size=" + size + ", color=" + color + ", channel=" + channel + ", volume=" + volume + ", power="
                 + power + "]";
     }
+
 }

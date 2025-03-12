@@ -3,9 +3,9 @@ package poly;
 public class CaptionTv extends Tv2 {
     boolean caption;
 
-    void displayCaption(String txt) {
+    void displayCaption(String text) {
         if (caption) {
-            System.out.println(txt);
+            System.out.println(text);
         }
     }
 }

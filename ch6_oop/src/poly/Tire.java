@@ -14,12 +14,11 @@ public class Tire {
         ++accumulateRotation;
 
         if (accumulateRotation < maxRotation) {
-            System.out.println(location + "Tire 수명 : " + (maxRotation + accumulateRotation) + "회");
+            System.out.println(location + " Tire 수명 : " + (maxRotation + accumulateRotation) + "회");
             return true;
         } else {
-            System.out.println("****" + location + "Tire 펑크 ***");
+            System.out.println("**** " + location + " Tire 펑크 ***");
             return false;
         }
     }
-
 }

@@ -3,6 +3,7 @@ package inter;
 public class RemoteControlEx {
     public static void main(String[] args) {
         RemoteControl rc;
+
         rc = new Television();
         rc.turnOn();
         rc.setVolume(8);
@@ -23,17 +24,16 @@ public class RemoteControlEx {
 
             @Override
             public void turnOn() {
-                System.out.println("라디오를 겹니다.");
+                System.out.println("라디오를 켭니다.");
             }
 
             @Override
             public void turnOff() {
-                System.out.println("라디오를 겹니다.");
+                System.out.println("라디오를 끕니다.");
             }
 
             @Override
             public void setVolume(int volume) {
-
                 if (volume > RemoteControl.MAX_VOLUME) {
                     this.volume = RemoteControl.MAX_VOLUME;
                 } else if (volume < RemoteControl.MIN_VOLUME) {
@@ -41,11 +41,10 @@ public class RemoteControlEx {
                 } else {
                     this.volume = volume;
                 }
-                System.out.println("현재 Audio 볼륨 : " + this.volume);
+                System.out.println("현재 라디오 볼륨 : " + this.volume);
             }
 
         };
-
         rc.turnOn();
         rc.turnOff();
     }

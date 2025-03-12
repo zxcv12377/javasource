@@ -3,7 +3,6 @@ package poly;
 public class EmployeeEx {
     public static void main(String[] args) {
         Employee employee1 = new Employee();
-
         employee1.setName("홍길동");
         employee1.setPosition("사원");
         // employee1.work();
@@ -28,7 +27,13 @@ public class EmployeeEx {
         doWork(employee1);
     }
 
-    static void doWork(Employee employee) {
-        employee.work();
+    static void doWork(Employee e) {
+        e.work();
     }
+    // static void doWork(Ceo e) {
+    // e.work();
+    // }
+    // static void doWork(PartTime e) {
+    // e.work();
+    // }
 }

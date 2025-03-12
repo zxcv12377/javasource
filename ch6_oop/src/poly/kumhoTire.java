@@ -1,8 +1,8 @@
 package poly;
 
-public class kumhoTire extends Tire {
+public class KumhoTire extends Tire {
 
-    public kumhoTire(int maxRotation, String location) {
+    public KumhoTire(int maxRotation, String location) {
         super(maxRotation, location);
     }
 
@@ -11,10 +11,10 @@ public class kumhoTire extends Tire {
         ++accumulateRotation;
 
         if (accumulateRotation < maxRotation) {
-            System.out.println(location + "kumho Tire 수명 : " + (maxRotation + accumulateRotation) + "회");
+            System.out.println(location + " KumhoTire 수명 : " + (maxRotation + accumulateRotation) + "회");
             return true;
         } else {
-            System.out.println("****" + location + "kumho Tire 펑크 ***");
+            System.out.println("**** " + location + " KumhoTire 펑크 ***");
             return false;
         }
     }

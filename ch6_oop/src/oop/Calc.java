@@ -1,27 +1,44 @@
 package oop;
 
 public class Calc {
-    long add(long a, long b) {
-        return a + b;
+    // 사칙연산
+    long add(long num1, long num2) {
+        return num1 + num2;
     }
 
-    long subtract(long a, long b) {
-        return a - b;
+    long subtract(long num1, long num2) {
+        return num1 - num2;
     }
 
-    long multiply(long a, long b) {
-        return a * b;
+    long multiply(long num1, long num2) {
+        return num1 * num2;
     }
 
-    double divide(double a, double b) {
-        return a / b;
+    double divide(double num1, double num2) {
+        return num1 / num2;
     }
 
-    long max(long a, long b) {
-        return a > b ? a : b;
+    // long 타입의 입력 값 2개 5,3
+    // 출력 : 큰 숫자 => 5
+    long max(long num1, long num2) {
+        // 조건 ? 참 : 거짓;
+        // if (num1 > num2) {
+        // return num1;
+        // } else {
+        // return num2;
+        // }
+        return num1 > num2 ? num1 : num2;
     }
 
-    long min(long a, long b) {
-        return a > b ? b : a;
+    // min
+    long min(long num1, long num2) {
+
+        // if (num1 > num2) {
+        // return num2;
+        // } else {
+        // return num1;
+        // }
+        return num1 > num2 ? num2 : num1;
     }
+
 }

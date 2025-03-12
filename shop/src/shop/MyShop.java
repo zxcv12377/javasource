@@ -5,12 +5,16 @@ import java.util.Scanner;
 public class MyShop implements IShop {
 
     private String title;
+    // 고객 5명 저장가능한 배열 생성
     private User[] users = new User[5];
-    private Product[] products = new Product[10];
-    private Product[] cart = new Product[10];
-    private int cUserNum;
-    private int num = 0;
+    // 제품 10 개 저장 가능한 배열 생성
+    Product[] products = new Product[10];
+    // cart (제품 저장 가능한 배열)
+    Product[] cart = new Product[10];
+
     Scanner sc = new Scanner(System.in);
+    // start() 에서 선택된 user 보관 변수
+    private String selUser;
 
     @Override
     public void setTitle(String title) {
@@ -19,120 +23,132 @@ public class MyShop implements IShop {
 
     @Override
     public void genUser() {
-        users[0] = new User("옥동국", PayType.CARD);
-        users[1] = new User("장효성", PayType.CASH);
+        // 2 명의 User 생성 후 배열객체에 담기
+        users[0] = new User("홍길동", PayType.CARD);
+        users[1] = new User("성춘향", PayType.CASH);
     }
 
     @Override
     public void genProduct() {
-        products[0] = new TV("삼성 TV", 2500000, "4K");
-        products[1] = new TV("LG TV", 3000000, "4K");
-        products[2] = new CellPhone("갤럭시 S25", 1500000, "KT");
-        products[3] = new CellPhone("갤럭시 A20", 1000000, "U+");
-        products[4] = new CellPhone("아이폰16+", 2300000, "SKT");
+        // 5 개 제품 생성 후 배열객체에 담기(tv2개, cellphone 3)
+        products[0] = new CellPhone("갤럭시 S25", 1260000, "SKT");
+        products[1] = new CellPhone("아이폰", 1300000, "U+");
+        products[2] = new Tv("LG 울트라 HD", 1270000, "4K");
+        products[3] = new Tv("삼성 QLED", 2980000, "QLED");
+        products[4] = new CellPhone("갤럭시 A3", 450000, "KT");
     }
 
     @Override
     public void start() {
-        System.out.println(this.title + " : 메인화면 - 계정선택");
-        System.out.println("============================");
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] == null)
-                break;
-            System.out.printf("[%d] %s(%s)\n", i, users[i].getName(), users[i].getPayType());
 
+        System.out.println(title + " : 메인화면 - 계정선택");
+        System.out.println("=======================================");
+        int i = 0;
+        for (User user : users) {
+            if (user != null) {
+                System.out.printf("[%d] %s(%s)\n", i++, user.getName(), user.getPayType());
+            }
         }
-        System.out.println("[X] 종료");
-        System.out.println("============================");
-        System.out.printf("선택 : ");
-        String input = sc.nextLine();
-        if (input.equalsIgnoreCase("x")) {
-            System.out.println("프로그램 종료");
-            System.exit(0);
-        } else if (input.equals("0") || input.equals("1")) {
-            cUserNum = Integer.parseInt(input);
+        System.out.println("[x] 종료");
+        System.out.println("=======================================");
+        System.out.print("선택 : "); // 0 or 1 or x
 
-            productList();
-        } else {
-            System.out.println("입력을 확인하세요");
-            start();
+        String input = sc.nextLine();
+        switch (input) {
+            case "x":
+            case "X":
+                System.exit(0);
+                break;
+            case "0":
+            case "1":
+                // 사용자가 선택한 user 정보 담기(checkout() 메소드 필요)
+                selUser = input;
+                productList();
+                break;
+            default:
+                System.out.println("입력을 확인해 주세요");
+                start();
+                break;
         }
     }
 
     public void productList() {
 
-        System.out.println(this.title + " : 상품목록 - 상품선택");
-        System.out.println("============================");
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null) {
-                break;
+        System.out.println(title + " : 상품목록 - 상품선택");
+        System.out.println("=======================================");
+        int i = 0;
+        for (Product product : products) {
+            if (product != null) {
+                System.out.printf("[%d]", i++);
+                product.printDetail();
             }
-            System.out.printf("[%d]", i);
-            products[i].printDetail();
         }
         System.out.println("[h] 메인화면");
         System.out.println("[c] 체크아웃");
-        System.out.println("============================");
+        System.out.println("=======================================");
         System.out.print("선택 : ");
-        String input = sc.nextLine();
-        if (input.equalsIgnoreCase("h")) {
-            System.out.println("메인 화면으로 넘어갑니다.");
-            start();
-        } else if (input.equalsIgnoreCase("c")) {
-            if (cart[0] == null) {
-                System.out.println("카트에 담긴 것이 없습니다.");
-                productList();
-            }
-            checkOut();
-        } else if (Integer.parseInt(input) < products.length && Integer.parseInt(input) >= 0
-                && products[Integer.parseInt(input)] != null) {
-            // else if (input.equals("0") || input.equals("1")
-            // || input.equals("2") || input.equals("3")
-            // || input.equals("4")) {
-            cart[num++] = products[Integer.parseInt(input)];
-            if (num > 9) {
-                System.out.println("카트가 가득 찼습니다. 체크아웃 화면으로 넘어갑니다.");
-                checkOut();
-            }
-            System.out.printf("[%s] 번의 상품이 담겼습니다.\n", input);
-            productList();
-        } else {
-            System.out.println("다시 입력하세요");
-            productList();
-        }
 
+        // 0~4 or h or c
+        String input = sc.nextLine();
+
+        switch (input) {
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+                // cart 배열에 선택한 제품 담기
+                for (int j = 0; j < cart.length; j++) {
+                    // cart 빈 곳 찾기
+                    if (cart[j] == null) {
+                        // 사용자가 선택한 제품 담기
+                        cart[j] = products[Integer.parseInt(input)];
+                        break;
+                    }
+                }
+                productList();
+                break;
+            case "h":
+                start();
+                break;
+            case "c":
+                checkout();
+                break;
+            default:
+                break;
+        }
     }
 
-    public void checkOut() {
-        int sum = 0;
-        System.out.println(this.title + " :  " + users[cUserNum].getName() + " - 체크아웃");
-        System.out.println("============================");
-        for (int i = 0; i < cart.length; i++) {
-            if (cart[i] == null) {
-                break;
+    public void checkout() {
+        System.out.println(title + " : " + users[Integer.parseInt(selUser)].getName() + " - 체크아웃");
+        System.out.println("=====================================");
+        int i = 0, sum = 0;
+        for (Product product : cart) {
+            if (product != null) {
+                System.out.printf("[%d] %s (%d)\n", i++, product.getPname(), product.getPrice());
+                sum += product.getPrice();
             }
-            System.out.printf("[%d]", i);
-            System.out.printf(" %s (%d)\n", cart[i].getpName(), cart[i].getPrice());
-            // cart[i].printDetail();
-            sum += cart[i].getPrice();
         }
-        System.out.println("결제 방법 : " + users[cUserNum].getPayType());
+        System.out.println("결제방법 : " + users[Integer.parseInt(selUser)].getPayType());
         System.out.println("합계 : " + sum);
-        System.out.println("============================");
+        System.out.println("=====================================");
         System.out.println("[p] 이전");
         System.out.println("[q] 종료");
-        System.out.print("선택 : ");
+        System.out.print("선택 : "); // p => productList(), q => 종료
+
         String input = sc.nextLine();
-        if (input.equalsIgnoreCase("q")) {
-            System.out.println("시스템 종료");
-            sc.close();
-            System.exit(0);
-        } else if (input.equalsIgnoreCase("p")) {
-            System.out.println("이전으로 돌아갑니다");
-            productList();
-        } else {
-            System.out.println("잘못된 입력입니다.");
-            checkOut();
+
+        switch (input) {
+            case "p":
+                productList();
+                break;
+            case "q":
+                System.exit(0);
+                break;
+            default:
+                break;
         }
+
     }
+
 }

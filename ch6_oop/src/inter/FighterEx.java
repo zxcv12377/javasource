@@ -5,8 +5,7 @@ public class FighterEx {
 
         Fighter fighter = new Fighter();
         Fightable fightable = new Fighter();
-        Movable movable = new Fighter();
         Unit unit = new Fighter();
-        Attackable attackable = new Fighter();
+
     }
 }

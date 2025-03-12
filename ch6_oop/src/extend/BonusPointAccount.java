@@ -2,20 +2,25 @@ package extend;
 
 public class BonusPointAccount extends Account {
 
-    private int bonus;
+    private int bonusPoint;
 
-    public BonusPointAccount(String ano, String owner, long balance, int bonus) {
+    public BonusPointAccount(String ano, String owner, long balance, int bonusPoint) {
         super(ano, owner, balance);
-        this.bonus = bonus;
+        this.bonusPoint = bonusPoint;
     }
 
+    public int getBonusPoint() {
+        return bonusPoint;
+    }
+
+    // 보너스포인트 = 보너스포인트 + (예금액 * 1%)
+    // 예금하다 메소드 수정
     @Override
-    public void deposit(long balance) {
-        bonus += balance * 0.01;
-        super.deposit(balance + bonus);
-
-        bonus += balance * 0.01;
-        System.out.println(bonus);
-        // bonus = bonus + balance *0.01;
+    void deposit(long amount) {
+        // 예금하다
+        super.deposit(amount);
+        // 보너스포인트 추가
+        bonusPoint += amount * 0.01;
     }
+
 }

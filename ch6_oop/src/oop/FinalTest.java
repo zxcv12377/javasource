@@ -1,18 +1,20 @@
 package oop;
 
+// public final class FinalTest {}
+
+// class Test extends FinalTest{
+// }
+
 public class FinalTest {
     final int MAX_SIZE = 10;
 
     final void getMaxSize() {
-        // this.MAX_SIZE = 20; (멤버변수)
-
-        // final int LV = MAX_SIZE;(지역변수)
-        // LV = 10;
+        // MAX_SIZE = 20;
+        final int LV = MAX_SIZE;
+        // LV = 20;
     }
 }
 
 class Test extends FinalTest {
-    // getMaxSize(); (메서드)
+
 }
-// public final class FinalTest { }(클래스)
-// class Test extends FinalTest{ }

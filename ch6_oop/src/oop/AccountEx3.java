@@ -4,18 +4,18 @@ import java.util.Scanner;
 
 public class AccountEx3 {
 
-    private static Account[] account = new Account[100];
+    private static Account account[] = new Account[100];
     private static Scanner sc = new Scanner(System.in);
-    static int count = 0;
 
     public static void main(String[] args) {
+
         boolean run = true;
         while (run) {
-            System.out.println("------------------------------------------------------------");
-            System.out.println("1.계좌생성 | 2. 계좌목록 | 3. 예금 | 4. 출금 | 5. 종료");
-            System.out.println("------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------");
+            System.out.println("1.계좌생성 | 2.계좌목록 | 3.예금 | 4.출금 | 5.종료");
+            System.out.println("--------------------------------------------------------");
 
-            System.out.print("선택 >> ");
+            System.out.print("선택 >>  ");
             int menu = Integer.parseInt(sc.nextLine());
             switch (menu) {
                 case 1:
@@ -33,110 +33,101 @@ public class AccountEx3 {
                 case 5:
                     run = false;
                     break;
-
                 default:
-                    System.out.println("잘못된 번호 입력");
+                    System.out.println("번호 확인");
                     break;
             }
         }
-        sc.close();
+
     }
 
     private static void createAccount() {
-        System.out.print("계좌 번호 입력 >> ");
-        String accountNum = sc.nextLine();
-        System.out.print("이름 입력 >> ");
-        String ownerName = sc.nextLine();
-        System.out.print("잔액 입력 >> ");
-        long balance = Integer.parseInt(sc.nextLine());
-        for (int i = 0; i < account.length; i++) {
-            if (account[i] == null) {
-                account[i] = new Account(accountNum, ownerName, balance);
+        // new Account("110-11", "홍길동", 1000000);
+        // 계좌번호
+        System.out.print("계좌번호 : ");
+        String ano = sc.nextLine();
+        // 계좌주
+        System.out.print("계좌주 : ");
+        String owner = sc.nextLine();
+        // 잔액
+        System.out.print("금액 : ");
+        int balance = Integer.parseInt(sc.nextLine());
+
+        for (int j = 0; j < account.length; j++) {
+            // for : account[i] 첫번째 만나는 null 이면
+            if (account[j] == null) {
+                account[j] = new Account(ano, owner, balance);
+                System.out.println("계좌가 생성되었습니다.");
+                // 루프 종료
                 break;
             }
         }
     }
 
     private static void accountList() {
-        System.out.println(account.length);
-        System.out.println("---------------------------");
+        System.out.println("-----------------------------");
         System.out.println("계좌 목록");
-        System.out.println("---------------------------");
+        System.out.println("-----------------------------");
+
+        // 배열 출력(널이 아니면)
         // for (int i = 0; i < account.length; i++) {
-        // if (account[i] == null)
-        // break;
+        // if (account[i] != null) {
         // System.out.printf("%s\t%s\t%d\n", account[i].getAno(), account[i].getOwner(),
         // account[i].getBalance());
         // }
+        // }
+
         for (Account acc : account) {
-            if (acc == null)
-                break;
-            System.out.printf("%s\t%s\t%d\n", acc.getAno(), acc.getOwner(), acc.getBalance());
+            if (acc != null) {
+                System.out.printf("%s\t%s\t%d\n", acc.getAno(), acc.getOwner(),
+                        acc.getBalance());
+            }
         }
     }
 
     private static void deposit() {
+        // 예금하다
+        // 계좌번호 입력받기 => 사용자가 입력한 계좌번호와 account 의 계좌번호 일치 여부 확인
+        System.out.print("계좌번호 : ");
+        String ano = sc.nextLine();
+        // 예금액 입력받기 => 잔액 = 잔액 + 예금액
+        System.out.print("예금액 : ");
+        int balance = Integer.parseInt(sc.nextLine());
 
-        System.out.print("계좌 번호 입력 >> ");
-        String accountNum = sc.nextLine();
-        Account findAcc = findAccount(accountNum);
-
-        System.out.print("입금할 금액을 입력 >> ");
-        long balance = Integer.parseInt(sc.nextLine());
-
+        Account findAcc = findAccount(ano);
+        // findAcc 가 널일 때 . 메서드에 접근하면 NullPointerException 발생
         if (findAcc != null) {
             findAcc.deposit(balance);
-        } else {
-            return;
         }
+
     }
 
     private static void withdraw() {
-        System.out.print("계좌 번호 입력 >> ");
-        String accountNum = sc.nextLine();
-        Account findAcc = findAccount(accountNum);
+        System.out.print("계좌번호 : ");
+        String ano = sc.nextLine();
+        System.out.print("출금액 : ");
+        int balance = Integer.parseInt(sc.nextLine());
 
-        System.out.print("출금할 금액을 입력 >> ");
-        long balance = Integer.parseInt(sc.nextLine());
-
+        Account findAcc = findAccount(ano);
         if (findAcc != null) {
             findAcc.withdraw(balance);
-        } else {
-            return;
         }
-
     }
 
     private static Account findAccount(String ano) {
-
-        // for (int i = 0; account[i] != null; i++) {
-        // if (ano.equals(account[i].getAno())) {
-        // return account[i];
-        // }
-        // }
-        // return null;
-
-        // for (int i = 0; i < account.length; i++) {
-        // if (account[i] != null) {
-        // if (account[i].getAno().equals(ano)) {
-        // return account[i];
-        // }
-        // if (account[i].getAno().equals(ano)) {
-
-        // break;
-        // }
-        // }
-        // }
-        // return null;
-
+        // 입력값 ano 와 account 배열 계좌 중에서 일치하는 계좌 찾기
         Account acc = null;
         for (int i = 0; i < account.length; i++) {
+            // 널이 아니어야 하고 account[i].getAno() == ano break;
             if (account[i] != null) {
+                // if (account[i].getAno().equals(ano)) {
+                // return account[i];
+                // }
+
                 if (account[i].getAno().equals(ano)) {
                     acc = account[i];
                     break;
                 }
-                System.out.println("찾는 계좌는 없음");
             }
         }
         return acc;
