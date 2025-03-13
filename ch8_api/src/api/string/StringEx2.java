@@ -31,7 +31,7 @@ public class StringEx2 {
         System.out.println("chArr " + Arrays.toString(chArr));
 
         // String => char 배열
-        char[] result = str.toCharArray();
+        // char[] result = str.toCharArray();
 
         // 존재하면 인덱스 반환 / 존재 안하면 -1
         System.out.println("주어진 문자가 문자열에 존재하는지 여부 " + str.indexOf("안"));

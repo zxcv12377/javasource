@@ -1,10 +1,10 @@
 package shop;
 
-public class Tv extends Product {
+public class TV extends Product {
 
     private String resolution;
 
-    public Tv(String pname, int price, String resolution) {
+    public TV(String pname, int price, String resolution) {
         super(pname, price);
         this.resolution = resolution;
     }

@@ -1,21 +1,16 @@
 package shop;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class MyShop implements IShop {
+public class MyShop2 implements IShop {
 
     private String title;
     // 고객 5명 저장가능한 배열 생성
-    // private User[] users = new User[5];
-    private List<User> users = new ArrayList<>();
+    private User[] users = new User[5];
     // 제품 10 개 저장 가능한 배열 생성
-    // Product[] products = new Product[10];
-    List<Product> products = new ArrayList<>();
+    Product[] products = new Product[10];
     // cart (제품 저장 가능한 배열)
-    // Product[] cart = new Product[10];
-    List<Product> cart = new ArrayList<>();
+    Product[] cart = new Product[10];
 
     Scanner sc = new Scanner(System.in);
     // start() 에서 선택된 user 보관 변수
@@ -29,18 +24,18 @@ public class MyShop implements IShop {
     @Override
     public void genUser() {
         // 2 명의 User 생성 후 배열객체에 담기
-        users.add(new User("홍길동", PayType.CARD));
-        users.add(new User("성춘향", PayType.CASH));
+        users[0] = new User("홍길동", PayType.CARD);
+        users[1] = new User("성춘향", PayType.CASH);
     }
 
     @Override
     public void genProduct() {
         // 5 개 제품 생성 후 배열객체에 담기(tv2개, cellphone 3)
-        products.add(new CellPhone("갤럭시 S25", 1260000, "SKT"));
-        products.add(new CellPhone("아이폰", 1300000, "U+"));
-        products.add(new TV("LG 울트라 HD", 1270000, "4K"));
-        products.add(new TV("삼성 QLED", 2980000, "QLED"));
-        products.add(new CellPhone("갤럭시 A3", 450000, "KT"));
+        products[0] = new CellPhone("갤럭시 S25", 1260000, "SKT");
+        products[1] = new CellPhone("아이폰", 1300000, "U+");
+        products[2] = new TV("LG 울트라 HD", 1270000, "4K");
+        products[3] = new TV("삼성 QLED", 2980000, "QLED");
+        products[4] = new CellPhone("갤럭시 A3", 450000, "KT");
     }
 
     @Override
@@ -102,16 +97,15 @@ public class MyShop implements IShop {
             case "2":
             case "3":
             case "4":
-
                 // cart 배열에 선택한 제품 담기
-                // for (int j = 0; j < cart.size(); j++) {
-                // // cart 빈 곳 찾기
-                // if (cart.get(j) == null) {
-                // // 사용자가 선택한 제품 담기
-                // cart.set(j, products.get(Integer.parseInt(input)));
-                // }
-                // }
-                cart.add(products.get(Integer.parseInt(input)));
+                for (int j = 0; j < cart.length; j++) {
+                    // cart 빈 곳 찾기
+                    if (cart[j] == null) {
+                        // 사용자가 선택한 제품 담기
+                        cart[j] = products[Integer.parseInt(input)];
+                        break;
+                    }
+                }
                 productList();
                 break;
             case "h":
@@ -126,7 +120,7 @@ public class MyShop implements IShop {
     }
 
     public void checkout() {
-        System.out.println(title + " : " + users.get(Integer.parseInt(selUser)).getName() + " - 체크아웃");
+        System.out.println(title + " : " + users[Integer.parseInt(selUser)].getName() + " - 체크아웃");
         System.out.println("=====================================");
         int i = 0, sum = 0;
         for (Product product : cart) {
@@ -135,7 +129,7 @@ public class MyShop implements IShop {
                 sum += product.getPrice();
             }
         }
-        System.out.println("결제방법 : " + users.get(Integer.parseInt(selUser)).getPayType());
+        System.out.println("결제방법 : " + users[Integer.parseInt(selUser)].getPayType());
         System.out.println("합계 : " + sum);
         System.out.println("=====================================");
         System.out.println("[p] 이전");

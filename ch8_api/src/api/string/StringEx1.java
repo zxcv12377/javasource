@@ -22,7 +22,7 @@ public class StringEx1 {
         str1 = "";
         System.out.println(str1.length());
         str2 = null;
-        System.out.println(str2.length());
+        // System.out.println(str2.length());
 
     }
 }
