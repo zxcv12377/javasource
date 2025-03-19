@@ -1,30 +1,30 @@
-package inter;
+// package inter;
 
-interface Soundable {
-    String sound();
-}
+// interface Soundable {
+// String sound();
+// }
 
-class Cat implements Soundable {
-    @Override
-    public String sound() {
-        return "야옹";
-    }
-}
+// class Cat implements Soundable {
+// @Override
+// public String sound() {
+// return "야옹";
+// }
+// }
 
-class Dog implements Soundable {
-    @Override
-    public String sound() {
-        return "멍멍";
-    }
-}
+// class Dog implements Soundable {
+// @Override
+// public String sound() {
+// return "멍멍";
+// }
+// }
 
-class SoundableEx {
-    public static void main(String[] args) {
-        printSound(new Cat());
-        printSound(new Dog());
-    }
+// class SoundableEx {
+// public static void main(String[] args) {
+// printSound(new Cat());
+// printSound(new Dog());
+// }
 
-    static void printSound(Soundable soundable) {
-        System.out.println(soundable.sound());
-    }
-}
+// static void printSound(Soundable soundable) {
+// System.out.println(soundable.sound());
+// }
+// }
