@@ -1,11 +1,13 @@
 package lambda;
 
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 import java.util.function.Function;
 import java.util.function.IntSupplier;
 import java.util.function.ObjDoubleConsumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class LambdaEx2 {
@@ -38,8 +40,29 @@ public class LambdaEx2 {
 
         IntSupplier intSupplier = () -> (int) ((Math.random() * 6) + 1);
         System.out.println(intSupplier.getAsInt());
-        // Function function;
-        // Operator operator;
-        // Predicate predicate;
+
+        // 전달인자로 받은 문자열의 길이가 0인지 테스트한 후 0이라면 빈 문자열입니다 출력
+        Predicate<String> predicate = (str) -> str.length() == 0;
+        if (predicate.test("")) {
+            System.out.println("빈 문자열 입니다.");
+        }
+
+        // 전달 인자로 받은 숫자가 짝수인지 테스트 한 후 짝수라면 짝수입니다 출력.
+
+        Predicate<Integer> predicate1 = (num) -> (num % 2) == 0;
+        if (predicate1.test(50)) {
+            System.out.println("짝수");
+        } else {
+            System.out.println("홀수");
+        }
+
+        // 숫자를 받아서 문자로 리턴
+        Function<Integer, String> function = (i) -> String.valueOf(i);
+        System.out.println(function.apply(50));
+
+        // 사칙연산
+        BiFunction<Integer, Integer, Integer> f2 = (x, y) -> x + y;
+        System.out.println(f2.apply(5, 4));
+
     }
 }
