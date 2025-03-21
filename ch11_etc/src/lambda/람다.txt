@@ -15,3 +15,9 @@ Lambda식 : 익명구현객체
 3) Function : 매개값 O, 리턴값 O /주로 매개값을 리턴값으로 매핑
 4) Operator : 매개값 O, 리턴값 O / 주로 매개값을 연산하고 결과를 리턴
 5) Predicate : 매개값 O, 리턴값 boolean / 매개값을 조사해서 true/false 리턴
+
+- 메서드 참조
+하나의 메서드만 호출하는 람다식은 (클래스이름::메서드이름) or (참조변수::매서드이름)
+
+System.out::println
+String::toUpperCase
