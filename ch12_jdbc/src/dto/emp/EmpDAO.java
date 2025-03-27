@@ -1,6 +1,8 @@
 package dto.emp;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpDAO {
     private Connection con = null;
@@ -47,8 +49,73 @@ public class EmpDAO {
         }
     }
 
-    public void Select() {
+    public List<EmpDTO> SelectAll() {
+        con = getConnection();
+        String sql = "select * from emp_temp";
+        List<EmpDTO> list = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
 
+            // for (EmpDTO eDto : list) {
+            // eDto = new EmpDTO();
+            // eDto.setEmpNo(rs.getInt("empNo"));
+            // eDto.setEName(rs.getString("ename"));
+            // eDto.setJob(rs.getString("job"));
+            // eDto.setMgr(rs.getInt("mgr"));
+            // eDto.setHireDate(rs.getString("hiredate"));
+            // eDto.setComm(rs.getInt("comm"));
+            // eDto.setDeptNo(rs.getInt("deptno"));
+            // eDto.setSal(rs.getInt("sal"));
+            // }
+            while (rs.next()) {
+                EmpDTO eDto = new EmpDTO();
+                eDto.setEmpNo(rs.getInt("empNo"));
+                eDto.setEName(rs.getString("ename"));
+                eDto.setJob(rs.getString("job"));
+                eDto.setMgr(rs.getInt("mgr"));
+                eDto.setHireDate(rs.getString("hiredate"));
+                eDto.setComm(rs.getInt("comm"));
+                eDto.setDeptNo(rs.getInt("deptno"));
+                eDto.setSal(rs.getInt("sal"));
+                list.add(eDto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(con, pstmt, rs);
+        }
+        return list;
+    }
+
+    public EmpDTO Select(int empNo) {
+        con = getConnection();
+        String sql = "select * from emp_temp where empno = ?";
+        EmpDTO eDto = null;
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, empNo);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                eDto = new EmpDTO();
+                eDto.setEmpNo(rs.getInt("empNo"));
+                eDto.setEName(rs.getString("ename"));
+                eDto.setJob(rs.getString("job"));
+                eDto.setMgr(rs.getInt("mgr"));
+                eDto.setHireDate(rs.getString("hiredate"));
+                eDto.setComm(rs.getInt("comm"));
+                eDto.setDeptNo(rs.getInt("deptno"));
+                eDto.setSal(rs.getInt("sal"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(con, pstmt, rs);
+        }
+        return eDto;
     }
 
     public int Delet(int empNo) {
