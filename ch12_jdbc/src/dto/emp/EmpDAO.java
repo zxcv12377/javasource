@@ -93,21 +93,33 @@ public class EmpDAO {
         con = getConnection();
         String sql = "select * from emp_temp where empno = ?";
         EmpDTO eDto = null;
+        EmpDTO eDto1 = null;
         try {
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, empNo);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                eDto = new EmpDTO();
-                eDto.setEmpNo(rs.getInt("empNo"));
-                eDto.setEName(rs.getString("ename"));
-                eDto.setJob(rs.getString("job"));
-                eDto.setMgr(rs.getInt("mgr"));
-                eDto.setHireDate(rs.getString("hiredate"));
-                eDto.setComm(rs.getInt("comm"));
-                eDto.setDeptNo(rs.getInt("deptno"));
-                eDto.setSal(rs.getInt("sal"));
+                // eDto = new EmpDTO();
+                // eDto.setEmpNo(rs.getInt("empNo"));
+                // eDto.setEName(rs.getString("ename"));
+                // eDto.setJob(rs.getString("job"));
+                // eDto.setMgr(rs.getInt("mgr"));
+                // eDto.setHireDate(rs.getString("hiredate"));
+                // eDto.setComm(rs.getInt("comm"));
+                // eDto.setDeptNo(rs.getInt("deptno"));
+                // eDto.setSal(rs.getInt("sal"));
+
+                eDto1 = EmpDTO.builder()
+                        .empNo(rs.getInt("empNo"))
+                        .eName(rs.getString("ename"))
+                        .job(rs.getString("job"))
+                        .mgr(rs.getInt("mgr"))
+                        .hireDate(rs.getString("hiredate"))
+                        .sal(rs.getInt("sal"))
+                        .comm(rs.getInt("comm"))
+                        .deptNo(rs.getInt("deptno"))
+                        .build();
             }
 
         } catch (SQLException e) {
@@ -115,7 +127,7 @@ public class EmpDAO {
         } finally {
             close(con, pstmt, rs);
         }
-        return eDto;
+        return eDto1;
     }
 
     public int Delet(int empNo) {

@@ -1,5 +1,7 @@
 package member;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MemberMain {
@@ -37,19 +39,34 @@ public class MemberMain {
                     util.printUpdateSuccessMessage(result, mDto.getId());
                     break;
                 case 3:
-                    mDto = util.memberDeleteInfo(sc);
-                    result = mDao.delete(mDto);
+                    result = mDao.delete(util.memberDeleteInfo(sc));
+                    util.printSuccessMessage(result);
                     break;
                 case 4:
-
+                    String input = util.memberSelect(sc);
+                    // regex(정규식)
+                    // input.matches(regex);
+                    if (input.matches("^[A-Za-z].*") == true) {
+                        MemberDTO row = mDao.Select(input);
+                        if (row != null) {
+                            util.memberPrint(row);
+                        }
+                    } else {
+                        List<MemberDTO> list = mDao.nameSelect(input);
+                        if (!list.isEmpty()) {
+                            util.memberAllSelect(list);
+                        }
+                    }
                     break;
                 case 5:
-
+                    util.memberAllSelect((mDao.allSelect()));
                     break;
                 case 6:
                     run = false;
                     break;
-
+                case 7:
+                    util.memberAllSelect(mDao.nameSelect(util.memberSelect(sc)));
+                    break;
                 default:
                     break;
             }
